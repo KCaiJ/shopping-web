@@ -82,7 +82,6 @@ app.controller('ContentController', function($scope, $controller, ContentService
 		UploadService.uploadFile().success(function(res) {
 			$scope.forward_login(res);
 			if(res.success) { //如果上传成功，取出url
-				console.log(res.message)
 				$scope.entity.pic = res.message; //设置文件地址
 			} else {
 				alert(res.message);
@@ -91,5 +90,15 @@ app.controller('ContentController', function($scope, $controller, ContentService
 			alert("上传发生错误");
 		});
 	};
-
+	
+	
+	
+	$scope.contentList=[];//广告集合	
+	$scope.findByCategoryId=function(categoryId){
+		contentService.findByCategoryId(categoryId).success(
+			function(response){
+				$scope.contentList[categoryId]=response;
+			}
+		);		
+	};
 });

@@ -23,4 +23,7 @@ app.service('SellerService', function($http) {
 	this.exit = function(sellerId, name) {
 		return $http.get(base + '/Seller/exit.do?sellerId=' + sellerId + '&name=' + name, { withCredentials: true });
 	}
+	this.changepasswd = function(entity) {
+		return $http.post(base + '/Seller/changepasswd.do', entity, { withCredentials: true });
+	}
 });

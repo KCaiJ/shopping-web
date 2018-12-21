@@ -9,31 +9,6 @@
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
 
-		<link rel="stylesheet" href="../../../plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../../plugins/adminLTE/css/AdminLTE.css">
-		<link rel="stylesheet" href="../../../plugins/adminLTE/css/skins/_all-skins.min.css">
-		<link rel="stylesheet" href="../../../css/style.css">
-		<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
-
-		<!-- 富文本编辑器 -->
-		<link rel="stylesheet" href="../../../plugins/kindeditor/themes/default/default.css" />
-		<link rel="stylesheet" href="../../../plugins/kindeditor/themes/default/default.css" />
-		<script charset="utf-8" src="../../../plugins/kindeditor/kindeditor-min.js"></script>
-		<script charset="utf-8" src="../../../plugins/kindeditor/lang/zh_CN.js"></script>
-
-		<script type="text/javascript" src="../../../plugins/angularjs/angular.min.js"></script>
-		<script type="text/javascript" src="../../../js/base/Base.js"></script>
-		<script type="text/javascript" src="../../../js/base/BaseController.js"></script>
-		<script type="text/javascript" src="../../../js/base/BaseService_Seller.js"></script>
-		<script type="text/javascript" src="../../../js/service/GoodsService.js"></script>
-		<script type="text/javascript" src="../../../js/service/UploadService.js"></script>
-		<script type="text/javascript" src="../../../js/service/TypeTemplateService.js"></script>
-		<script type="text/javascript" src="../../../js/service/SpecificationService.js"></script>
-		<script type="text/javascript" src="../../../js/service/BrandService.js"></script>
-		<script type="text/javascript" src="../../../js/service/ItemCatService.js"></script>
-		<script type="text/javascript" src="../../../js/controller/GoodsController.js"></script>
-
 	</head>
 
 	<body class="hold-transition skin-red sidebar-mini" ng-app="shopping" ng-controller="GoodsController" ng-init="selectItemCat1List();findOne()">
@@ -246,7 +221,7 @@
 			</div>
 			<div class="btn-toolbar list-toolbar">
 				<button class="btn btn-primary" ng-click="save()"><i class="fa fa-save" ></i>保存</button>
-				<button class="btn btn-default"  onclick="window.location.href='goods.html';">返回列表</button>
+				<button class="btn btn-default" onclick="window.location.href='goods.html';">返回列表</button>
 			</div>
 
 		</section>
@@ -295,17 +270,32 @@
 			</div>
 		</div>
 
-		<!-- 正文区域 /-->
-		<script type="text/javascript">
-			//allowFileManager :是否允许浏览服务器已上传文件
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="content"]', {
-					allowFileManager: true
-				});
-			});
-		</script>
-
 	</body>
+
+	<link rel="stylesheet" href="../../../plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../../plugins/adminLTE/css/AdminLTE.css">
+	<link rel="stylesheet" href="../../../plugins/adminLTE/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../../../css/style.css">
+	<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- 富文本编辑器 -->
+	<link rel="stylesheet" href="../../../plugins/kindeditor/themes/default/default.css" />
+	<link rel="stylesheet" href="../../../plugins/kindeditor/themes/default/default.css" />
+	<script charset="utf-8" src="../../../plugins/kindeditor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="../../../plugins/kindeditor/lang/zh_CN.js"></script>
+
+	<script type="text/javascript" src="../../../plugins/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../../../js/base/Base.js"></script>
+	<script type="text/javascript" src="../../../js/base/BaseController.js"></script>
+	<script type="text/javascript" src="../../../js/base/BaseService_Seller.js"></script>
+	<script type="text/javascript" src="../../../js/service/GoodsService.js"></script>
+	<script type="text/javascript" src="../../../js/service/UploadService.js"></script>
+	<script type="text/javascript" src="../../../js/service/TypeTemplateService.js"></script>
+	<script type="text/javascript" src="../../../js/service/SpecificationService.js"></script>
+	<script type="text/javascript" src="../../../js/service/BrandService.js"></script>
+	<script type="text/javascript" src="../../../js/service/ItemCatService.js"></script>
+	<script type="text/javascript" src="../../../js/controller/GoodsController.js"></script>
+	<script type="text/javascript" src="../../../js/common/common.js"></script>
 
 </html>

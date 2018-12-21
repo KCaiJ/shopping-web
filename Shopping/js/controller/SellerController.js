@@ -1,7 +1,7 @@
 app.controller('SellerController', function($scope, $controller, SellerService) {
 	$controller("BaseController", { $scope: $scope });
 	var Service = SellerService;
-	$scope.status = ['未审核', '申请审核中','审核通过', '审核未通过', '关闭']; //商品状态
+	$scope.status = ['未审核', '审核通过', '审核未通过', '关闭']; //商品状态
 	//查询实体 
 	$scope.findAll = function() {
 		Service.findAll().success(function(res) {
@@ -31,11 +31,12 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 		);
 	}
 
-	//增加和修改
+	//增加
 	$scope.save = function() {
 		var methodName = 'add'; //方法名称
 		Service.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
+				$scope.forward_login(res);
 				if(res.success) {
 					alert("注册成功");
 					location.href = 'shoplogin.html'
@@ -45,6 +46,19 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 			}
 		);
 	}
+	//修改
+	$scope.update = function() {
+		$scope.entity.sellerId = $scope.getCookie('seller')
+		var methodName = 'update'; //方法名称
+		Service.SaveAndUpdate(methodName, $scope.entity).success(
+			function(res) {
+				$scope.forward_login(res);
+				alert(res.message);
+			}
+		);
+	}
+
+
 	//查询+ 分页
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
@@ -57,7 +71,8 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 			}
 		);
 	}
-
+	
+	//状态更改
 	$scope.updateStatus = function(sellerId, status) {
 		Service.updateStatus(sellerId, status).success(
 			function(res) {
@@ -68,9 +83,6 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 					alert("修改失败")
 				}
 			}
-
 		);
-
 	}
-
 });

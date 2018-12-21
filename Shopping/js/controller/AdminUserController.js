@@ -18,4 +18,13 @@ app.controller('AdminUserController', function($scope, $controller, AdminUserSer
 			location.href = 'login.html'
 		});
 	}
+	//改密
+	$scope.changepasswd = function() {
+		$scope.pojo.name=$scope.getCookie('admin');
+		Service.changepasswd($scope.pojo).success(function(res) {
+			$scope.forward_login(res)
+			alert(res.message);
+		});
+	}
+	
 });

@@ -14,5 +14,8 @@ app.service('ContentService', function($http) {
 	this.delete = function(ids) {
 		return $http.get(base + '/Content/delete.do?ids=' + ids, { withCredentials: true });
 	}
+	this.findByCategoryId=function(categoryId){
+		return $http.get(base+"Content/findByCategoryId.do?categoryId="+categoryId);
+	}	
 
 });

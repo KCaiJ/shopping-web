@@ -20,4 +20,13 @@ app.controller('SellerLoginController', function($scope, $controller, SellerServ
 			location.href = '../shoplogin.html'
 		});
 	}
+	//改密
+	$scope.changepasswd = function() {
+		$scope.pojo.name=$scope.getCookie('seller');
+		Service.changepasswd($scope.pojo).success(function(res) {
+			$scope.forward_login(res)
+			alert(res.message);
+			$scope.pojo={}
+		});
+	}
 });

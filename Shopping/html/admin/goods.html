@@ -8,30 +8,7 @@
 		<title>商品管理</title>
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-		<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
-		<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
-		<link rel="stylesheet" href="../../css/style.css">
-		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
-		
-		<script src="../../plugins/angularjs/angular.min.js"></script>
-		<script type="text/javascript" src="../../plugins/angularjs/angular-sanitize.min.js" ></script>
-		<!-- 分页组件 -->
-		<script src="../../plugins/angularjs/pagination.js"></script>
-		<link rel="stylesheet" href="../../plugins/angularjs/pagination.css">
-		<script type="text/javascript" >
-			var app = angular.module('shopping', ['pagination','ngSanitize']);
-		</script>
-		<script type="text/javascript" src="../../js/base/BaseService.js"></script>
-		<script type="text/javascript" src="../../js/base/BaseController.js"></script>
-		<script type="text/javascript" src="../../js/service/UploadService.js"></script>
-		<script type="text/javascript" src="../../js/service/TypeTemplateService.js"></script>
-		<script type="text/javascript" src="../../js/service/SpecificationService.js"></script>
-		<script type="text/javascript" src="../../js/service/ItemCatService.js"></script>
-		<script type="text/javascript" src="../../js/service/GoodsService.js"></script>
-		<script type="text/javascript" src="../../js/service/BrandService.js"></script>
-		<script type="text/javascript" src="../../js/controller/GoodsController.js"></script>
+
 	</head>
 
 	<body class="hold-transition skin-red sidebar-mini" ng-app="shopping" ng-controller="GoodsController" ng-init="search_domain.auditStatus=1;findItemCatList();findTypeList();findBrandList()">
@@ -135,7 +112,7 @@
 							<li>
 								<a href="#sku" data-toggle="tab">SKU信息</a>
 							</li>
-							
+
 						</ul>
 
 						<!-- 选项卡开始 -->
@@ -200,23 +177,23 @@
 									</tr>
 								</table>
 							</div>
-							
+
 							<div class="tab-pane fade" id="extend">
 								<br>
 								<table class="table table-bordered table-striped" width="800px">
-									<tr >
+									<tr>
 										<td>扩展信息</td>
-										<td >
-											<span  ng-repeat="pojo in details.goodsDesc.customAttributeItems" >
+										<td>
+											<span ng-repeat="pojo in details.goodsDesc.customAttributeItems">
 												{{pojo.text}}  :{{pojo.value}}  <br />
 											</span>
-											
+
 										</td>
 									</tr>
 									<tr>
 										<td id="#container">商品介绍</td>
 										<td ng-bind-html="details.goodsDesc.introduction"></td>
-									</tr>					
+									</tr>
 									<tr>
 										<td>规格信息</td>
 										<td>
@@ -224,19 +201,19 @@
 												{{spec.attributeName}} :  {{spec.attributeValue}} <br />
 											</span>
 										</td>
-									</tr>		
+									</tr>
 									<tr>
 										<td>图片详情</td>
 										<td>
 											<p ng-repeat="img in details.goodsDesc.itemImages">
-												{{img.color}} :  <img alt="" src="{{img.url}}" width="100px" height="100px">  <br />
+												{{img.color}} : <img alt="" src="{{img.url}}" width="100px" height="100px"> <br />
 											</p>
 										</td>
 									</tr>
-									
+
 								</table>
 							</div>
-						
+
 							<div class="tab-pane fade" id="sku">
 								<br>
 								<table class="table table-bordered table-striped" width="800px">
@@ -245,7 +222,7 @@
 										<th class="sorting">商品库存</th>
 										<th class="sorting">商品价格</th>
 										<th class="sorting">创建时间</th>
-										<th class="sorting">更新时间</th>		
+										<th class="sorting">更新时间</th>
 									</tr>
 									<tr ng-repeat="list in details.itemList">
 										<td>{{list.title}}</td>
@@ -268,5 +245,28 @@
 			</div>
 		</div>
 	</body>
+	
+	<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
+	<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../plugins/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../../plugins/angularjs/angular-sanitize.min.js"></script>
+	<script src="../../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../../plugins/angularjs/pagination.css">
+	<script type="text/javascript">
+		var app = angular.module('shopping', ['pagination', 'ngSanitize']);
+	</script>
+	<script type="text/javascript" src="../../js/base/BaseService.js"></script>
+	<script type="text/javascript" src="../../js/base/BaseController.js"></script>
+	<script type="text/javascript" src="../../js/service/UploadService.js"></script>
+	<script type="text/javascript" src="../../js/service/TypeTemplateService.js"></script>
+	<script type="text/javascript" src="../../js/service/SpecificationService.js"></script>
+	<script type="text/javascript" src="../../js/service/ItemCatService.js"></script>
+	<script type="text/javascript" src="../../js/service/GoodsService.js"></script>
+	<script type="text/javascript" src="../../js/service/BrandService.js"></script>
+	<script type="text/javascript" src="../../js/controller/GoodsController.js"></script>
 
 </html>

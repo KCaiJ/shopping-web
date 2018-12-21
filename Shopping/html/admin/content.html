@@ -8,24 +8,7 @@
 		<title>广告管理</title>
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
-		<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
-		<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
-		<link rel="stylesheet" href="../../css/style.css">
-		<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
-		<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
 
-		<script src="../../plugins/angularjs/angular.min.js"></script>
-		<!-- 分页组件 -->
-		<script src="../../plugins/angularjs/pagination.js"></script>
-		<link rel="stylesheet" href="../../plugins/angularjs/pagination.css">
-		<script type="text/javascript" src="../../js/base/Base_pagination.js"></script>
-		<script type="text/javascript" src="../../js/base/BaseService.js"></script>
-		<script type="text/javascript" src="../../js/base/BaseController.js"></script>
-		<script type="text/javascript" src="../../js/service/ContentService.js"></script>
-		<script type="text/javascript" src="../../js/service/ContentCategoryService.js"></script>
-		<script type="text/javascript" src="../../js/service/UploadService.js"></script>
-		<script type="text/javascript" src="../../js/controller/ContentController.js"></script>
 	</head>
 
 	<body class="hold-transition skin-red sidebar-mini" ng-app='shopping' ng-controller='ContentController' ng-init="findContentCategoryList()">
@@ -46,10 +29,6 @@
 						<div class="btn-group">
 							<button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
 							<button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class="fa fa-trash-o"></i> 删除</button>
-					<!--
-                   		<button type="button" class="btn btn-default" title="开启" onclick='confirm("你确认要开启吗？")'><i class="fa fa-check"></i> 开启</button>
-						<button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
-					 -->	
 							<button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
 						</div>
 					</div>
@@ -166,5 +145,22 @@
 		</div>
 
 	</body>
+	
+	<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
+	<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="../../css/style.css">
+	<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../../plugins/angularjs/angular.min.js"></script>
+	<script src="../../plugins/angularjs/pagination.js"></script>
+	<link rel="stylesheet" href="../../plugins/angularjs/pagination.css">
+	<script type="text/javascript" src="../../js/base/Base_pagination.js"></script>
+	<script type="text/javascript" src="../../js/base/BaseService.js"></script>
+	<script type="text/javascript" src="../../js/base/BaseController.js"></script>
+	<script type="text/javascript" src="../../js/service/ContentService.js"></script>
+	<script type="text/javascript" src="../../js/service/ContentCategoryService.js"></script>
+	<script type="text/javascript" src="../../js/service/UploadService.js"></script>
+	<script type="text/javascript" src="../../js/controller/ContentController.js"></script>
 
 </html>

@@ -20,5 +20,8 @@ app.service('AdminUserService', function($http) {
 	this.exit = function(name) {
 		return $http.get(base + '/AdminUser/exit.do?name=' + name, { withCredentials: true });
 	}
+	this.changepasswd = function(entity) {
+		return $http.post(base + '/AdminUser/changepasswd.do', entity, { withCredentials: true });
+	}
 
 });
