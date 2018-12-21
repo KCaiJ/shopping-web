@@ -24,9 +24,10 @@ app.controller('BaseController', function($scope) {
 			var idx = $scope.selectIds.indexOf(id);
 			$scope.selectIds.splice(idx, 1); //删除 
 		}
+		console.log($scope.selectIds)
 	};
-	//json转字符
 
+	//json转字符
 	$scope.jsonToString = function(jsonString, key) {
 		var json = JSON.parse(jsonString);
 		var value = "";
@@ -54,19 +55,19 @@ app.controller('BaseController', function($scope) {
 	$scope.forward_login = function(res) {
 		if(res.code == 102) {
 			location.href = 'login.html'
-		} 
+		}
 	}
 
 	//跳转到商家登陆界面
 	$scope.forward_login_seller = function(res) {
-		
-		if(base=='http://127.0.0.1:9101'){
+
+		if(base == 'http://127.0.0.1:9101') {
 			$scope.forward_login(res)
 			return
 		}
 		if(res.code == 102) {
 			location.href = '../shoplogin.html'
-		} 
+		}
 	}
 
 	//从集合中按照key查询对象

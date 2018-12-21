@@ -1,7 +1,21 @@
-app.controller('SellerController', function($scope, $controller, SellerService) {
+app.controller('ContentController', function($scope, $controller, ContentService, UploadService, ContentCategoryService) {
 	$controller("BaseController", { $scope: $scope });
-	var Service = SellerService;
-	$scope.status = ['未审核', '申请审核中','审核通过', '审核未通过', '关闭']; //商品状态
+	$scope.status = ["无效", "有效"];
+	var Service = ContentService;
+	$scope.itemCatList = []
+	//加载广告分类列表
+	$scope.findContentCategoryList = function() {
+		ContentCategoryService.findAll().success(
+			function(res) {
+				$scope.forward_login(res);
+				$scope.contentCategoryList = res;
+				for(var i = 0; i < res.length; i++) {
+					$scope.itemCatList[res[i].id] = res[i].name;
+				}
+			}
+		);
+	}
+
 	//查询实体 
 	$scope.findAll = function() {
 		Service.findAll().success(function(res) {
@@ -9,7 +23,6 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 			$scope.list = res
 		});
 	}
-
 	$scope.findOne = function(id) {
 		Service.findOne(id).success(function(res) {
 			$scope.forward_login(res);
@@ -34,13 +47,17 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	//增加和修改
 	$scope.save = function() {
 		var methodName = 'add'; //方法名称
+		if($scope.entity.id != null) { //如果有ID
+			methodName = 'update'; //则执行修改方法 
+		}
 		Service.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
+				$scope.forward_login(res);
 				if(res.success) {
-					alert("注册成功");
-					location.href = 'shoplogin.html'
+					//重新查询 
+					$scope.reloadList(); //重新加载
 				} else {
-					alert("登陆名已存在");
+					alert(res.message);
 				}
 			}
 		);
@@ -58,19 +75,21 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 		);
 	}
 
-	$scope.updateStatus = function(sellerId, status) {
-		Service.updateStatus(sellerId, status).success(
-			function(res) {
-				$scope.forward_login(res);
-				if(res.success) {
-					$scope.reloadList();
-				} else {
-					alert("修改失败")
-				}
+	/**
+	 * 上传图片
+	 */
+	$scope.uploadFile = function() {
+		UploadService.uploadFile().success(function(res) {
+			$scope.forward_login(res);
+			if(res.success) { //如果上传成功，取出url
+				console.log(res.message)
+				$scope.entity.pic = res.message; //设置文件地址
+			} else {
+				alert(res.message);
 			}
-
-		);
-
-	}
+		}).error(function() {
+			alert("上传发生错误");
+		});
+	};
 
 });
