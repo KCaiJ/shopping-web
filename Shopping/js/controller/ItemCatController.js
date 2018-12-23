@@ -1,6 +1,5 @@
 app.controller('ItemCatController', function($scope, $controller, ItemCatService, TypeTemplateService) {
 	$controller("BaseController", { $scope: $scope });
-	var Service = ItemCatService;
 	var typeList_value = [];
 	$scope.typeList = { data: [] }
 
@@ -18,13 +17,13 @@ app.controller('ItemCatController', function($scope, $controller, ItemCatService
 
 	//查询实体 
 	$scope.findAll = function() {
-		Service.findAll().success(function(res) {
+		ItemCatService.findAll().success(function(res) {
 			$scope.forward_login(res);
 			$scope.list = res
 		});
 	}
 	$scope.findOne = function(id) {
-		Service.findOne(id).success(function(res) {
+		ItemCatService.findOne(id).success(function(res) {
 			$scope.forward_login(res);
 			$scope.entity = res
 			TypeTemplateService.findOne(res.typeId).success(
@@ -39,7 +38,7 @@ app.controller('ItemCatController', function($scope, $controller, ItemCatService
 	//批量删除
 	$scope.delete = function() {
 		//获取选中的复选框			
-		Service.delete($scope.selectIds).success(
+		ItemCatService.delete($scope.selectIds).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -59,7 +58,7 @@ app.controller('ItemCatController', function($scope, $controller, ItemCatService
 			$scope.entity.parentId = $scope.parentId;
 		}
 		$scope.entity.typeId = $scope.entity.typeId.id
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		ItemCatService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -75,7 +74,7 @@ app.controller('ItemCatController', function($scope, $controller, ItemCatService
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
 		row = $scope.paginationConf.itemsPerPage
-		Service.findByParentId(page, row, $scope.search_domain).success(
+		ItemCatService.findByParentId(page, row, $scope.search_domain).success(
 			function(res) {
 				$scope.forward_login(res);
 				$scope.list = res.rows;
@@ -86,7 +85,7 @@ app.controller('ItemCatController', function($scope, $controller, ItemCatService
 	//获取分类信息
 	$scope.findByParentId = function(parentId) {
 		$scope.parentId = parentId;
-		Service.findByParentId(parentId).success(
+		ItemCatService.findByParentId(parentId).success(
 			function(res) {
 				$scope.forward_login(res);
 				$scope.list = res;

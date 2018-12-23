@@ -1,7 +1,6 @@
 app.controller('ContentController', function($scope, $controller, ContentService, UploadService, ContentCategoryService) {
 	$controller("BaseController", { $scope: $scope });
 	$scope.status = ["无效", "有效"];
-	var Service = ContentService;
 	$scope.itemCatList = []
 	//加载广告分类列表
 	$scope.findContentCategoryList = function() {
@@ -18,13 +17,13 @@ app.controller('ContentController', function($scope, $controller, ContentService
 
 	//查询实体 
 	$scope.findAll = function() {
-		Service.findAll().success(function(res) {
+		ContentService.findAll().success(function(res) {
 			$scope.forward_login(res);
 			$scope.list = res
 		});
 	}
 	$scope.findOne = function(id) {
-		Service.findOne(id).success(function(res) {
+		ContentService.findOne(id).success(function(res) {
 			$scope.forward_login(res);
 			$scope.entity = res
 		});
@@ -33,7 +32,7 @@ app.controller('ContentController', function($scope, $controller, ContentService
 	//批量删除
 	$scope.delete = function() {
 		//获取选中的复选框			
-		Service.delete($scope.selectIds).success(
+		ContentService.delete($scope.selectIds).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -50,7 +49,7 @@ app.controller('ContentController', function($scope, $controller, ContentService
 		if($scope.entity.id != null) { //如果有ID
 			methodName = 'update'; //则执行修改方法 
 		}
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		ContentService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -66,7 +65,7 @@ app.controller('ContentController', function($scope, $controller, ContentService
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
 		row = $scope.paginationConf.itemsPerPage
-		Service.search(page, row, $scope.search_domain).success(
+		ContentService.search(page, row, $scope.search_domain).success(
 			function(res) {
 				$scope.forward_login(res);
 				$scope.list = res.rows;
@@ -95,9 +94,10 @@ app.controller('ContentController', function($scope, $controller, ContentService
 	
 	$scope.contentList=[];//广告集合	
 	$scope.findByCategoryId=function(categoryId){
-		contentService.findByCategoryId(categoryId).success(
+		ContentService.findByCategoryId(categoryId).success(
 			function(response){
 				$scope.contentList[categoryId]=response;
+				console.log($scope.contentList[1])
 			}
 		);		
 	};

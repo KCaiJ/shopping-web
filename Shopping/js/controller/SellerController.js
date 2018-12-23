@@ -1,17 +1,16 @@
 app.controller('SellerController', function($scope, $controller, SellerService) {
 	$controller("BaseController", { $scope: $scope });
-	var Service = SellerService;
 	$scope.status = ['未审核', '审核通过', '审核未通过', '关闭']; //商品状态
 	//查询实体 
 	$scope.findAll = function() {
-		Service.findAll().success(function(res) {
+		SellerService.findAll().success(function(res) {
 			$scope.forward_login(res);
 			$scope.list = res
 		});
 	}
 
 	$scope.findOne = function(id) {
-		Service.findOne(id).success(function(res) {
+		SellerService.findOne(id).success(function(res) {
 			$scope.forward_login(res);
 			$scope.entity = res
 		});
@@ -20,7 +19,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	//批量删除
 	$scope.delete = function() {
 		//获取选中的复选框			
-		Service.delete($scope.selectIds).success(
+		SellerService.delete($scope.selectIds).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -34,7 +33,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	//增加
 	$scope.save = function() {
 		var methodName = 'add'; //方法名称
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		SellerService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -50,7 +49,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	$scope.update = function() {
 		$scope.entity.sellerId = $scope.getCookie('seller')
 		var methodName = 'update'; //方法名称
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		SellerService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login(res);
 				alert(res.message);
@@ -63,7 +62,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
 		row = $scope.paginationConf.itemsPerPage
-		Service.search(page, row, $scope.search_domain).success(
+		SellerService.search(page, row, $scope.search_domain).success(
 			function(res) {
 				$scope.forward_login(res);
 				$scope.list = res.rows;
@@ -74,7 +73,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	
 	//状态更改
 	$scope.updateStatus = function(sellerId, status) {
-		Service.updateStatus(sellerId, status).success(
+		SellerService.updateStatus(sellerId, status).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {

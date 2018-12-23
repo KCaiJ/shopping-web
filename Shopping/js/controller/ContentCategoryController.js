@@ -1,15 +1,14 @@
 app.controller('ContentCategoryController', function($scope, $controller, ContentCategoryService) {
 	$controller("BaseController", { $scope: $scope });
-	var Service = ContentCategoryService;
 	//查询实体 
 	$scope.findAll = function() {
-		Service.findAll().success(function(res) {
+		ContentCategoryService.findAll().success(function(res) {
 			$scope.forward_login(res);
 			$scope.list = res
 		});
 	}
 	$scope.findOne = function(id) {
-		Service.findOne(id).success(function(res) {
+		ContentCategoryService.findOne(id).success(function(res) {
 			$scope.forward_login(res);
 			$scope.entity = res
 		});
@@ -18,7 +17,7 @@ app.controller('ContentCategoryController', function($scope, $controller, Conten
 	//批量删除
 	$scope.delete = function() {
 		//获取选中的复选框			
-		Service.delete($scope.selectIds).success(
+		ContentCategoryService.delete($scope.selectIds).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -35,7 +34,7 @@ app.controller('ContentCategoryController', function($scope, $controller, Conten
 		if($scope.entity.id != null) { //如果有ID
 			methodName = 'update'; //则执行修改方法 
 		}
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		ContentCategoryService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login(res);
 				if(res.success) {
@@ -51,7 +50,7 @@ app.controller('ContentCategoryController', function($scope, $controller, Conten
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
 		row = $scope.paginationConf.itemsPerPage
-		Service.search(page, row, $scope.search_domain).success(
+		ContentCategoryService.search(page, row, $scope.search_domain).success(
 			function(res) {
 				$scope.forward_login(res);
 				$scope.list = res.rows;

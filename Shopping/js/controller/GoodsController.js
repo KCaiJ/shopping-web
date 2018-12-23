@@ -1,6 +1,5 @@
 app.controller('GoodsController', function($scope, $controller, $location, GoodsService, UploadService, ItemCatService, TypeTemplateService, SpecificationService, BrandService) {
 	$controller("BaseController", { $scope: $scope });
-	var Service = GoodsService;
 	$scope.entity = { goodsDesc: { itemImages: [], specificationItems: [] } }; //页面实体结构
 	$scope.status = ['未审核', '申请审核中','审核通过', '审核未通过', '关闭']; //商品状态
 	$scope.itemCatList = []; //商品分类列表
@@ -43,7 +42,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 
 	//查询实体 
 	$scope.findAll = function() {
-		Service.findAll().success(function(res) {
+		GoodsService.findAll().success(function(res) {
 			$scope.forward_login_seller(res);
 			$scope.list = res
 		});
@@ -54,7 +53,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 		if(id == null) {
 			return;
 		}
-		Service.findOne(id).success(
+		GoodsService.findOne(id).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				$scope.entity = res;
@@ -77,7 +76,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 	
 	//获取实体属性
 	$scope.findOneByID = function(id) {
-		Service.findOne(id).success(
+		GoodsService.findOne(id).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				$scope.details = res;
@@ -87,12 +86,6 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 			}
 		);
 	}
-	//把实体格式字符串转义成HTML格式的字符串
-function escapeStringHTML(str) {
-    str = str.replace(/&lt;/g,'<');
-    str = str.replace(/&gt;/g,'>');
-    return str;
-}
 
 	//根据规格名称和选项名称返回是否被勾选
 	$scope.checkAttributeValue = function(specName, optionName) {
@@ -112,7 +105,7 @@ function escapeStringHTML(str) {
 	//批量删除
 	$scope.delete = function() {
 		//获取选中的复选框			
-		Service.delete($scope.selectIds).success(
+		GoodsService.delete($scope.selectIds).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				if(res.success) {
@@ -131,7 +124,7 @@ function escapeStringHTML(str) {
 			methodName = 'update'; //则执行修改方法 
 		}
 
-		Service.SaveAndUpdate(methodName, $scope.entity).success(
+		GoodsService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				if(res.success) {
@@ -149,7 +142,7 @@ function escapeStringHTML(str) {
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
 		row = $scope.paginationConf.itemsPerPage
-		Service.search(page, row, $scope.search_domain).success(
+		GoodsService.search(page, row, $scope.search_domain).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				$scope.list = res.rows;
@@ -299,7 +292,7 @@ function escapeStringHTML(str) {
 
 	//批量修改状态
 	$scope.updateStatus = function(status) {
-		Service.updateStatus($scope.selectIds, status).success(
+		GoodsService.updateStatus($scope.selectIds, status).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				if(res.success) {
