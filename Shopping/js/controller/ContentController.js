@@ -92,13 +92,22 @@ app.controller('ContentController', function($scope, $controller, ContentService
 	
 	
 	
+	//前端界面请求
+	
 	$scope.contentList=[];//广告集合	
 	$scope.findByCategoryId=function(categoryId){
 		ContentService.findByCategoryId(categoryId).success(
 			function(response){
 				$scope.contentList[categoryId]=response;
-				console.log($scope.contentList[1])
+				console.log($scope.contentList[categoryId])
 			}
 		);		
 	};
+	
+	//搜索跳转
+	$scope.Tosearch=function(){
+		location.href="search.html#?keywords="+$scope.keywords;
+	}
+
+	
 });

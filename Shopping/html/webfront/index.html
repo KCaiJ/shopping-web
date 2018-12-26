@@ -7,7 +7,7 @@
 		<title>购物商城</title>
 	</head>
 
-	<body ng-app="shopping" ng-controller="ContentController" ng-init="findByCategoryId(1)">
+	<body ng-app="shopping" ng-controller="ContentController" ng-init="findByCategoryId(1);findByCategoryId(2)">
 		<!-- 头部栏位 -->
 		<!--页面顶部-->
 		<div id="nav-bottom">
@@ -17,7 +17,7 @@
 					<div class="py-container">
 						<div class="shortcut">
 							<ul class="fl">
-								<li class="f-item">商城欢迎您！</li>
+								<li class="f-item">欢迎！</li>
 								<li class="f-item">请
 									<a href="login.html" target="_blank">登录</a>　<span><a href="register.html" target="_blank">免费注册</a></span></li>
 							</ul>
@@ -70,8 +70,8 @@
 									<form action="" class="sui-form form-inline">
 										<!--searchAutoComplete-->
 										<div class="input-append">
-											<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" />
-											<button class="sui-btn btn-xlarge btn-danger" type="button">搜索</button>
+											<input type="text" id="autocomplete" type="text" class="input-error input-xxlarge" ng-model="keywords"/>
+											<button class="sui-btn btn-xlarge btn-danger" type="button" ng-click="Tosearch()">搜索</button>
 										</div>
 									</form>
 								</div>
@@ -652,18 +652,9 @@
 							<h3>今日推荐</h3>
 						</div>
 					</li>
-					<li class="yui3-u-5-24">
-						<a href="list.html" target="_blank"><img src="../../img/today01.png" /></a>
-					</li>
-					<li class="yui3-u-5-24">
-						<img src="../../img/today02.png" />
-					</li>
-					<li class="yui3-u-5-24">
-						<img src="../../img/today03.png" />
-					</li>
-					<li class="yui3-u-5-24">
-						<img src="../../img/today04.png" />
-					</li>
+					<li class="yui3-u-5-24" ng-repeat="item in contentList[2]">
+						<a href="{{item.url}}" target="_blank"><img src="{{item.pic}}" /></a>
+					</li>	
 				</ul>
 			</div>
 		</div>
@@ -683,14 +674,14 @@
 									<a href="" class="pic"><img src="../../img/like_02.png" alt="" /></a>
 									<div class="like-text">
 										<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-										<h3>¥116.00</h3>
+										<h3>1</h3>
 									</div>
 								</dd>
 								<dd>
 									<a href="" class="pic"><img src="../../img/like_01.png" alt="" /></a>
 									<div class="like-text">
 										<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-										<h3>¥116.00</h3>
+										<h3>2</h3>
 									</div>
 								</dd>
 							</dl>
@@ -701,14 +692,14 @@
 									<a href="" class="pic"><img src="../../img/like_03.png" alt="" /></a>
 									<div class="like-text">
 										<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-										<h3>¥116.00</h3>
+										<h3>3</h3>
 									</div>
 								</dd>
 								<dd>
 									<a href="" class="pic"><img src="../../img/like_02.png" alt="" /></a>
 									<div class="like-text">
 										<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-										<h3>¥116.00</h3>
+										<h3>4</h3>
 									</div>
 								</dd>
 							</dl>
@@ -720,7 +711,7 @@
 									<div class="like-text">
 										<p>捷波朗 </p>
 										<p>（jabra）BOOSI劲步</p>
-										<h3>¥236.00</h3>
+										<h3>5</h3>
 									</div>
 								</dd>
 								<dd>
@@ -728,7 +719,7 @@
 									<div class="like-text">
 										<p>三星（G5500）</p>
 										<p>移动联通双网通</p>
-										<h3>¥566.00</h3>
+										<h3>6</h3>
 									</div>
 								</dd>
 							</dl>
@@ -739,14 +730,14 @@
 									<a href="" class="pic"><img src="../../img/like_02.png" alt="" /></a>
 									<div class="like-text">
 										<p>阳光美包新款单肩包女包时尚子母包四件套女</p>
-										<h3>¥116.00</h3>
+										<h3>7</h3>
 									</div>
 								</dd>
 								<dd>
 									<a href="" class="pic"><img src="../../img/like_01.png" alt="" /></a>
 									<div class="like-text">
 										<p>爱仕达 30CM炒锅不粘锅NWG8330E电磁炉炒</p>
-										<h3>¥116.00</h3>
+										<h3>8</h3>
 									</div>
 								</dd>
 							</dl>
@@ -758,7 +749,7 @@
 									<div class="like-text">
 										<p>捷波朗 </p>
 										<p>（jabra）BOOSI劲步</p>
-										<h3>¥236.00</h3>
+										<h3>9</h3>
 									</div>
 								</dd>
 								<dd>
@@ -766,7 +757,7 @@
 									<div class="like-text">
 										<p>欧普</p>
 										<p>JYLZ08面板灯平板灯铝</p>
-										<h3>¥456.00</h3>
+										<h3>10</h3>
 									</div>
 								</dd>
 							</dl>
@@ -778,14 +769,14 @@
 									<div class="like-text">
 										<p>三星（G5500）</p>
 										<p>移动联通双网通</p>
-										<h3>¥566.00</h3>
+										<h3>11</h3>
 									</div>
 								</dd>
 								<dd>
 									<a href="http://sc.chinaz.com/" class="pic"><img nsrc="../../img/assets/img/like_02.png" alt="" /></a>
 									<div class="like-text">
 										<p>韩国所望紧致湿润精华露400ml</p>
-										<h3>¥896.00</h3>
+										<h3>12</h3>
 									</div>
 								</dd>
 							</dl>
@@ -805,6 +796,8 @@
 					<div class="yui3-u row-405 Interest-conver">
 						<img src="../../img/interest01.png" />
 					</div>
+
+					
 					<div class="yui3-u row-225 Interest-conver-split">
 						<h5>好东西</h5>
 						<img src="../../img/interest02.png" />
