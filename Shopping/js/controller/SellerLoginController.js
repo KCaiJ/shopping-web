@@ -23,7 +23,7 @@ app.controller('SellerLoginController', function($scope, $controller, SellerServ
 	$scope.changepasswd = function() {
 		$scope.pojo.name=$scope.getCookie('seller');
 		SellerService.changepasswd($scope.pojo).success(function(res) {
-			$scope.forward_login(res)
+			$scope.forward_login_seller(res)
 			alert(res.message);
 			$scope.pojo={}
 		});

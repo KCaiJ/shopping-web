@@ -308,7 +308,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 
 	//修改单一状态
 	$scope.updateStatusOne = function(id, status) {
-		Service.updateStatus(id, status).success(
+		GoodsService.updateStatus(id, status).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				if(res.success) {
@@ -322,7 +322,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 	
 	//修改上下架状态
 	$scope.isMarketable = function(id, status) {
-		Service.isMarketable(id, status).success(
+		GoodsService.isMarketable(id, status).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				if(res.success) {

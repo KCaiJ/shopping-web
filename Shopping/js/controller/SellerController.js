@@ -11,7 +11,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 
 	$scope.findOne = function(id) {
 		SellerService.findOne(id).success(function(res) {
-			$scope.forward_login(res);
+			$scope.forward_login_seller(res);
 			$scope.entity = res
 		});
 	}
@@ -35,7 +35,6 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 		var methodName = 'add'; //方法名称
 		SellerService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
-				$scope.forward_login(res);
 				if(res.success) {
 					alert("注册成功");
 					location.href = 'shoplogin.html'
@@ -47,11 +46,12 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 	}
 	//修改
 	$scope.update = function() {
+		console.log("Ss")
 		$scope.entity.sellerId = $scope.getCookie('seller')
 		var methodName = 'update'; //方法名称
 		SellerService.SaveAndUpdate(methodName, $scope.entity).success(
 			function(res) {
-				$scope.forward_login(res);
+				$scope.forward_login_seller(res);
 				alert(res.message);
 			}
 		);

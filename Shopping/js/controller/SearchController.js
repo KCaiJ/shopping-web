@@ -16,7 +16,7 @@ app.controller('SearchController', function($scope, $controller,$location,Search
 		);	
 	}
 	
-	$scope.searchMap={'keywords':'','category':'','brand':'','spec':{},'price':'','pageNo':1, 'pageSize':10,'sort':'','sortFieId':''};//搜索对象
+	$scope.searchMap={'keywords':'','category':'','brand':'','spec':{},'price':'','pageNo':1, 'pageSize':10,'sort':'','sortFieid':''};//搜索对象
 	//添加搜索项
 	$scope.addSearchItem=function(key,value){
 		if(key=='category' || key=='brand' || key=='price'){//如果点击的是分类或者是品牌
@@ -91,8 +91,8 @@ app.controller('SearchController', function($scope, $controller,$location,Search
 	}
 	
 	//排序规则
-	$scope.sortSearch=function(sortField,sort){
-		$scope.searchMap.sortField=sortField;	
+	$scope.sortSearch=function(sortFieid,sort){
+		$scope.searchMap.sortFieid=sortFieid;	
 		$scope.searchMap.sort=sort;	
 		$scope.search();
 	}
