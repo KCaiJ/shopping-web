@@ -1,4 +1,4 @@
-app.controller('ItemPageController', function($scope, $controller,$location, ItemPageService) {
+app.controller('ItemPageController', function($scope, $controller,$location,$http, ItemPageService) {
 	$controller("BaseController", { $scope: $scope });
 	var skuList=[];
 	//加载搜索参数
@@ -92,7 +92,16 @@ app.controller('ItemPageController', function($scope, $controller,$location, Ite
 
 	//添加商品到购物车
 	$scope.addToCart=function(){
-		alert('skuid:'+$scope.sku.id);				
+		$http.get('http://127.0.0.1:9107/Cart/addGoodsToCartList.do?itemId='+ $scope.sku.id +'&num='+$scope.num,{ withCredentials: true }).success(
+				 function(response){
+					 if(response.success){
+						 alert("已添加至购物车");
+						 //location.href='cart.html';//跳转到购物车页面
+					 }else{
+						 alert(response.message);
+					 }					 
+				 }				
+		);				
 	}
 
 

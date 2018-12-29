@@ -41,12 +41,11 @@
 									<input ng-model="entity.password" type="password" placeholder="请输入密码" class="span2 input-xfat">
 								</div>
 								<div class="setting">
-									<div id="slider">
-										<div id="slider_bg"></div>
-										<span id="label">>></span> <span id="labelTip">拖动滑块验证</span>
+									<div id="mpanel4" >
+									
 									</div>
 								</div>
-								<div class="logined">
+								<div id="loginBtn" class="logined" hidden="true">
 									<a class="sui-btn btn-block btn-xlarge btn-danger" ng-click="login(entity)" target="_blank">登&nbsp;&nbsp;录</a>
 								</div>
 							</form>
@@ -79,6 +78,7 @@
 	<link rel="icon" href="../assets/img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="../../css/webbase.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/pages-login-manage.css" />
+	<link rel="stylesheet" href="../../plugins/jquery-front-end-verify/css/verify.css" />
 	<script src="../../plugins/angularjs/angular.min.js"></script>
 	<script type="text/javascript" src="../../js/base/Base.js"></script>
 	<script type="text/javascript" src="../../js/base/BaseService.js"></script>
@@ -89,16 +89,37 @@
 	<script type="text/javascript" src="../../plugins/sui/sui.min.js"></script>
 	<script type="text/javascript" src="../../plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
 	<script type="text/javascript" src="../../js/pages/jquery.slideunlock.js"></script>
+	<script type="text/javascript" src="../../plugins/jquery-front-end-verify/js/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../plugins/jquery-front-end-verify/js/verify.js" ></script>
+	
+	
 	<script>
-		$(function() {
-			var slider = new SliderUnlock("#slider", {
-				successLabelTip: "欢迎使用"
-			}, function() {
-				// alert("验证成功,即将跳转至首页");
-				// window.location.href="index.html"
-			});
-			slider.init();
-		})
+		$('#mpanel4').slideVerify({
+			type : 2,		//类型
+			vOffset : 4,	//误差量，根据需求自行调整
+			vSpace : 5,	//间隔
+			imgName : ['../../../img/1.jpg', '../../../img/2.jpg'],
+			imgSize : {
+				width: '335px',
+				height: '100px',
+			},
+			blockSize : {
+				width: '40px',
+				height: '40px',
+			},
+			barSize : {
+				width : '335px',
+				height : '40px',
+			},
+			ready : function() {
+			},
+			success : function() {
+				 $("#loginBtn").show();
+			},
+			error : function() {
+			     
+			}
+		});
 	</script>
 
 </html>

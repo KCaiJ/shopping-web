@@ -44,25 +44,17 @@
 										<div class="input-prepend"><span class="add-on loginpwd"></span>
 											<input ng-model="entity.password" type="password" placeholder="请输入密码" class="span2 input-xfat">
 										</div>
-										<div class="setting">
-											<label class="checkbox inline"><input name="m1" type="checkbox" value="2" checked="">自动登录</label>
-											<span class="forget">忘记密码？</span>
+										<div id="mpanel5" style="margin-bottom: 10px;">
 										</div>
-										<div class="logined">
+										
+										<div class="logined" id="loginBtn" hidden="true">
 											<a class="sui-btn btn-block btn-xlarge btn-danger" target="_blank" ng-click="login(entity)">登&nbsp;&nbsp;录</a>
 										</div>
-									</form>
-									<div class="otherlogin">
-										<div class="types">
-											<ul>
-												<li><img src="../../img/qq.png" width="35px" height="35px" /></li>
-												<li><img src="../../img/sina.png" /></li>
-												<li><img src="../../img/ali.png" /></li>
-												<li><img src="../../img/weixin.png" /></li>
-											</ul>
+										<div >
+											<span class=" fr register"><a href="register.html" >立即注册</a></span>
 										</div>
-										<span class="register"><a href="register.html" target="_blank">立即注册</a></span>
-									</div>
+									</form>
+									
 								</div>
 							</div>
 						</div>
@@ -92,6 +84,7 @@
 	<link rel="icon" href="assets/img/favicon.ico">
 	<link rel="stylesheet" type="text/css" href="../../css/webbase.css" />
 	<link rel="stylesheet" type="text/css" href="../../css/pages-shoplogin.css" />
+	<link rel="stylesheet" href="../../plugins/jquery-front-end-verify/css/verify.css" />
 	<script src="../../plugins/angularjs/angular.min.js"></script>
 	<script type="text/javascript" src="../../js/base/Base.js"></script>
 	<script type="text/javascript" src="../../js/base/BaseController.js"></script>
@@ -103,5 +96,31 @@
 	<script type="text/javascript" src="../../plugins/sui/sui.min.js"></script>
 	<script type="text/javascript" src="../../plugins/jquery-placeholder/jquery.placeholder.min.js"></script>
 	<script type="text/javascript" src="../../js/pages/shoplogin.js"></script>
+	<script type="text/javascript" src="../../plugins/jquery-front-end-verify/js/verify.js" ></script>
+
+	<script>
+		$('#mpanel5').pointsVerify({
+			defaultNum : 8,	//默认的文字数量
+			checkNum : 4,	//校对的文字数量
+			vSpace : 5,	//间隔
+			imgName : ['../../../img/1.jpg', '../../../img/2.jpg'],
+			imgSize : {
+				width: '335px',
+				height: '140px',
+			},
+			barSize : {
+				width : '335px',
+				height : '40px',
+			},
+			ready : function() {
+			},
+			success : function() {
+				 $("#loginBtn").show();
+			},
+			error : function() {
+	//		    alert('验证失败！');
+			}
+		});
+	</script>
 
 </html>

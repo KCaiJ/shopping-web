@@ -19,6 +19,10 @@ app.controller('AdminUserController', function($scope, $controller, AdminUserSer
 	}
 	//改密
 	$scope.changepasswd = function() {
+		if($scope.pojo.newPassword!=$scope.newPassword)  {
+	      	alert("两次输入的密码不一致!");		    	
+	      	return ;
+	    } 	
 		$scope.pojo.name=$scope.getCookie('admin');
 		AdminUserService.changepasswd($scope.pojo).success(function(res) {
 			$scope.forward_login(res)

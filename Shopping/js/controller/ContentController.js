@@ -1,4 +1,4 @@
-app.controller('ContentController', function($scope, $controller, ContentService, UploadService, ContentCategoryService) {
+app.controller('ContentController', function($scope, $controller,$http, ContentService, UploadService, ContentCategoryService) {
 	$controller("BaseController", { $scope: $scope });
 	$scope.status = ["无效", "有效"];
 	$scope.itemCatList = []
@@ -108,6 +108,16 @@ app.controller('ContentController', function($scope, $controller, ContentService
 	$scope.Tosearch=function(){
 		location.href="search.html#?keywords="+$scope.keywords;
 	}
+	
+	
+	//注销
+	$scope.exit = function() {
+		var user = $scope.getCookie("user");
+		$http.get('http://127.0.0.1:9106/User/exit.do?username=' + user , { withCredentials: true }).success(function(res) {
+			location.href = 'login.html'
+		});
+	}
+
 
 	
 });

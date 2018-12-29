@@ -1,8 +1,14 @@
 app.controller('SearchController', function($scope, $controller,$location,SearchService) {
 	//加载搜索参数
 	$scope.loadkeywords=function(){
-		$scope.searchMap.keywords=  $location.search()['keywords'];
+		$scope.searchMap.keywords=$location.search()['keywords'];
+		if($scope.searchMap.keywords=='undefined'){
+			$scope.searchMap.keywords=''
+			return 
+		}
 		$scope.search();
+
+		
 	}
 
 	//搜索
