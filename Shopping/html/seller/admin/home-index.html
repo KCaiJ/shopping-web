@@ -8,10 +8,11 @@
 		<title>订单管理</title>
 		<link rel="stylesheet" type="text/css" href="../../../css/webbase.css" />
     	<link rel="stylesheet" type="text/css" href="../../../css/pages-seckillOrder.css" />
+    	<link rel="stylesheet" href="../../../plugins/bootstrap/css/bootstrap.min.css">
 	</head>
 
-	<body style="background-color:#8AA4AF;">
-		<div id="account" ng-app="shopping" ng-controller="OrderController" ng-init="selectstatus('')">
+	<body style="background-color:#8AA4AF;" ng-app="shopping" ng-controller="OrderController" ng-init="selectstatus(3)">
+		<div id="account" >
 			<div class="py-container">
 				<div class="yui3-g home">
 					<!--左侧列表-->
@@ -19,13 +20,7 @@
 						<div class="list-items">
 							<dl>
 								<dt><i>·</i> 订单中心</dt>
-								<dd>
-									<a ng-click="selectstatus('')" href="home-index.html"  class=" {{isSelectedstatus('')?'list-active':''}} ">
-										<i class="fa fa-folder"></i>
-										<span>全部订单</span>
-										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-									</a>
-								</dd>
+							
 								<dd>
 									<a ng-click="selectstatus(3)" class=" {{isSelectedstatus(3)?'list-active':''}} ">
 										<i class="fa fa-folder"></i>
@@ -36,14 +31,29 @@
 								<dd>
 									<a  ng-click="selectstatus(4)" class=" {{isSelectedstatus(4)?'list-active':''}} ">
 										<i class="fa fa-folder"></i>
-										<span>待收货</span>
+										<span>已发货</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 									</a>
 								</dd>
+							
 								<dd>
 									<a  ng-click="selectstatus(5)" class=" {{isSelectedstatus(5)?'list-active':''}} ">
 										<i class="fa fa-folder"></i>
 										<span>交易成功</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
+								<dd>
+									<a  ng-click="selectstatus(7)" class=" {{isSelectedstatus(7)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>退款/退货</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
+								<dd>
+									<a  ng-click="selectstatus(8)" class=" {{isSelectedstatus(8)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>退款/退货记录</span>
 										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 									</a>
 								</dd>
@@ -61,7 +71,6 @@
 											<th width="35%">宝贝</th>
 											<th width="5%">单价</th>
 											<th width="5%">数量</th>
-											<th width="8%">商品操作</th>
 											<th width="10%">实付款</th>
 											<th width="10%">交易状态</th>
 											<th width="10%">交易操作</th>
@@ -71,7 +80,6 @@
 							</div>
 							<div class="order-detail">
 								<div class="orders">
-
 									<!--order1-->
 									<div class="choose-title" ng-repeat="item in list">
 										<label data-toggle="checkbox">
@@ -84,7 +92,7 @@
 												<td width="35%">
 													<div class="typographic">
 														<img src="{{itemlist.picPath}}" width="100px" height="100px" />
-														<a href="item.html#?id={{itemlist.goodsId}}" class="block-text">{{itemlist.title}}</a>
+														<a href="#" class="block-text">{{itemlist.title}}</a>
 													</div>
 												</td>
 												<td width="5%" class="center">
@@ -93,23 +101,6 @@
 													</ul>
 												</td>
 												<td width="5%" class="center">{{itemlist.num}}</td>
-
-												<td width="8%" class="center" ng-if="$first" rowspan="{{item.orderItemlist.length}}">
-													<ul class="unstyled">
-														<li ng-if="item.order.status==1" ng-click="UpdateOrderStatus(item.orderId,6)">
-															<a>取消订单</a>
-														</li>
-														<li ng-if="item.order.status>=2&&item.order.status<=4" ng-click="UpdateOrderStatus(item.orderId,7)">
-															<a>申请退款/退货</a>
-														</li>
-														<li ng-if="item.order.status==5">
-															交易成功
-														</li>
-														<li ng-if="item.order.status==6">
-															交易关闭
-														</li>
-													</ul>
-												</td>
 												<td width="10%" class="center" ng-if="$first" rowspan="{{item.orderItemlist.length}}">
 													<ul class="unstyled">
 														<li>¥{{item.totalFee}}</li>
@@ -118,27 +109,22 @@
 
 												<td width="10%" class="center" ng-if="$first" rowspan="{{item.orderItemlist.length}}">
 													<ul class="unstyled">
-														<li ng-if="item.order.status==1">未付款</li>
-														<li ng-if="item.order.status==2">已付款</li>
 														<li ng-if="item.order.status==3">未发货</li>
-														<li ng-if="item.order.status==4">已发货</li>
+														<li ng-if="item.order.status==4">等待用户确认收货</li>
 														<li ng-if="item.order.status==5">交易成功</li>
-														<li ng-if="item.order.status==6">交易关闭</li>
 														<li ng-if="item.order.status==7">退款/退货中</li>
-														<li>
-															<a href="home-orderDetail.html#?id={{item.orderId}}"class="btn">订单详情</a>
-														</li>
+														<li ng-if="item.order.status==8">已退款/退货</li>
 													</ul>
 												</td>
 												<td width="10%" class="center" ng-if="$first" rowspan="{{item.orderItemlist.length}}">
 													<ul class="unstyled">
 														<li>
-															<a class="sui-btn btn-info" ng-if="item.order.status==1" ng-click="pay(item.order.paymentType)">立即付款</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status>=2&&item.order.status<=3">提醒发货</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==4" ng-click="UpdateOrderStatus(item.orderId,5)">确认收货</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==5">交易成功</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==6">交易关闭</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==7">退款/退货中</a>
+															<a class="sui-btn btn-info" ng-if="item.order.status>=2&&item.order.status<=3" ng-click="settingId(item.orderId)"  data-toggle="modal" data-target="#editModal" class="btn btn-default btn-flat">发货</a>
+															<p ng-if="item.order.status==7">
+																<a class="sui-btn btn-info"  ng-click="UpdateOrderStatus(item.orderId,8)">同意退款/退货</a>
+															</p>
+															
+															
 														</li>
 													</ul>
 												</td>
@@ -157,6 +143,35 @@
 				</div>
 			</div>
 		</div>
+		
+		
+		<!-- 编辑窗口 -->
+		<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						<h3 id="myModalLabel">填写物流订单</h3>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered table-striped" width="800px">
+							<tr>
+								<td>物流公司名称</td>
+								<td><input type="type" class="form-control" placeholder="物流公司名称" ng-model="pojo.name"> </td>
+							</tr>
+							<tr>
+								<td>快递单号</td>
+								<td><input type="type" class="form-control" placeholder="快递单号" ng-model="pojo.code"> </td>
+							</tr>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" ng-click="setsend()">保存</button>
+						<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">关闭</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 	</body>
 
@@ -167,6 +182,7 @@
 	<script type="text/javascript" src="../../../js/base/Base.js"></script>
 	<script type="text/javascript" src="../../../js/base/BaseController.js"></script>
 	<script type="text/javascript" src="../../../js/controller/OrderController_Seller.js"></script>
-	<script type="text/javascript" src="../../../js/service/OrderService.js"></script>
+	<script type="text/javascript" src="../../../js/service/OrderService_Seller.js"></script>
+	<script src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>
 
 </html>

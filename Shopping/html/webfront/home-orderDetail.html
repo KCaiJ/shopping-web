@@ -76,6 +76,8 @@
 										<span class="red" ng-if="entity.order.status==4">已发货</span>
 										<span class="red" ng-if="entity.order.status==5">交易成功</span>
 										<span class="red" ng-if="entity.order.status==6">交易关闭</span>
+										<span class="red" ng-if="entity.order.status==7">退款/退货中</span>
+										<span class="red" ng-if="entity.order.status==8">已退款/退货成功</span>
 									</p>
 								</div>
 							</div>
@@ -85,6 +87,10 @@
 								<p>订单单号：{{entity.orderId}}</p>
 								<p>下单时间：{{entity.order.createTime}}</p>
 								<p>支付方式：{{payType[entity.order.paymentType]}}</p>
+								<p  ng-if="entity.order.status==4">
+									<p>物流公司：{{entity.order.shippingName}}</p>
+									<p>物流单号：{{entity.order.shippingCode}}</p>
+								</p>
 							</div>
 							<div class="order-goods">
 								<table class="sui-table">

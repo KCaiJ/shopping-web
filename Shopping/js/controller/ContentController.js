@@ -130,7 +130,7 @@ app.controller('ContentController', function($scope, $controller, $http,$timeout
 				for (var i = 0; i < $scope.itemCat1List.length; i++) {
 					$scope.myStyle[i] = { "display" : status,}
 				}
-				console.log($scope.myStyle)
+				console.log($scope.itemCat1List)
 			}
 		);
 	}

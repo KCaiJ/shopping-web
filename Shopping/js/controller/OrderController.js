@@ -32,7 +32,7 @@ app.controller('OrderController', function($scope, $controller, $location, Order
 		OrderService.UpdateOrderStatus(id,status).success(function(res) {
 			$scope.forward_login(res);
 			if(res.success) {
-				$scope.selectstatus('');
+				$scope.selectstatus($scope.status);
 			}else{
 				alert(res.message)
 			}

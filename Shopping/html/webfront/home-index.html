@@ -56,6 +56,38 @@
 										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
 									</a>
 								</dd>
+								
+								<dd>
+									<a  ng-click="selectstatus(5)" class=" {{isSelectedstatus(5)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>交易成功</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
+								
+								<dd>
+									<a  ng-click="selectstatus(6)" class=" {{isSelectedstatus(6)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>交易关闭</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
+								
+								<dd>
+									<a  ng-click="selectstatus(7)" class=" {{isSelectedstatus(7)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>待退款/退货</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
+								
+								<dd>
+									<a  ng-click="selectstatus(8)" class=" {{isSelectedstatus(8)?'list-active':''}} ">
+										<i class="fa fa-folder"></i>
+										<span>已退款/退货</span>
+										<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+									</a>
+								</dd>
 							</dl>
 							<dl>
 								<dt><i>·</i> 设置</dt>
@@ -121,7 +153,10 @@
 															交易成功
 														</li>
 														<li ng-if="item.order.status==6">
-															交易关闭
+															交易关闭	
+														</li>
+														<li ng-if="item.order.status==8">
+															退款/退货成功
 														</li>
 													</ul>
 												</td>
@@ -140,6 +175,7 @@
 														<li ng-if="item.order.status==5">交易成功</li>
 														<li ng-if="item.order.status==6">交易关闭</li>
 														<li ng-if="item.order.status==7">退款/退货中</li>
+														<li ng-if="item.order.status==8">退款/退货成功</li>
 														<li>
 															<a href="home-orderDetail.html#?id={{item.orderId}}"class="btn">订单详情</a>
 														</li>
@@ -149,11 +185,9 @@
 													<ul class="unstyled">
 														<li>
 															<a class="sui-btn btn-info" ng-if="item.order.status==1" ng-click="pay(item.order.paymentType)">立即付款</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status>=2&&item.order.status<=3">提醒发货</a>
+															<a class="sui-btn btn-info" ng-if="item.order.status>=2&&item.order.status<=3" ng-click="UpdateOrderStatus(item.orderId,3)" >提醒发货</a>
 															<a class="sui-btn btn-info" ng-if="item.order.status==4" ng-click="UpdateOrderStatus(item.orderId,5)">确认收货</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==5">交易成功</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==6">交易关闭</a>
-															<a class="sui-btn btn-info" ng-if="item.order.status==7">退款/退货中</a>
+															
 														</li>
 													</ul>
 												</td>

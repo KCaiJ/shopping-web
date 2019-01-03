@@ -32,7 +32,7 @@ app.controller('OrderController', function($scope, $controller, $location, Order
 		OrderService.UpdateOrderStatus(id,status).success(function(res) {
 			$scope.forward_login_seller(res);
 			if(res.success) {
-				$scope.selectstatus('');
+				$scope.selectstatus($scope.status);
 			}else{
 				alert(res.message)
 			}
@@ -163,6 +163,35 @@ app.controller('OrderController', function($scope, $controller, $location, Order
 	      temp.submit(); 
 	      return temp;
 	  }
+	$scope.settingId=function(orderid){
+		console.log(orderid)
+		$scope.orderid=orderid+"";
+		$scope.pojo={}
+	}
 	
+	$scope.setsend=function(){
+		console.log($scope.orderid)
+		OrderService.findOne($scope.orderid).success(
+			function(response){
+				$scope.forward_login_seller(response);
+				response.shippingName=$scope.pojo.name
+				response.shippingCode=$scope.pojo.code
+				response.status=4
+				response.orderId=$scope.orderid
+				console.log(response)
+				var methodName = 'update'; //方法名称
+				OrderService.SaveAndUpdate(methodName, response).success(
+					function(res) {
+						$scope.forward_login_seller(res);
+						if(res.success) {
+							$scope.selectstatus($scope.status); 
+						} else {
+							alert(res.message);
+						}
+					}
+				);
+			}
+		);	
 	
+	}
 });
