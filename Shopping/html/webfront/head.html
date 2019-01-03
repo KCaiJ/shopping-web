@@ -4,6 +4,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/webbase.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/pages-seckillOrder.css" />
 	</head>
 
 	<body>
@@ -14,7 +16,7 @@
 					<div class="py-container">
 						<div class="shortcut">
 							<ul class="fl">
-								<li class="f-item">商城欢迎您！</li>
+								<li class="f-item">欢迎您！</li>
 								<li class="f-item" ng-if='getCookie("user")==""'>请 
 									<a href="login.html">登录</a>　<span><a href="register.html" >免费注册</a></span>
 								</li>
@@ -45,10 +47,10 @@
 											<a href="../seller/shoplogin.html">商家后台</a>
 										</li>
 										<li>
-											<a href="cooperation.html">合作招商</a>
+											<a href="sampling.html">招商条约</a>
 										</li>
 										<li>
-											<a href="../seller/shoplogin.html">商家后台</a>
+											<a href="../admin/login.html">运营后台</a>
 										</li>
 									</ul>
 								</li>
@@ -71,7 +73,7 @@
 										<!--searchAutoComplete-->
 										<div class="input-append">
 											<input type="text" id="autocomplete" class="input-error input-xxlarge" ng-model="keywords" />
-											<button class="sui-btn btn-xlarge btn-danger" type="button" ng-click="Tosearch()">搜索</button>
+											<button class="sui-btn btn-xlarge btn-danger" type="button" ng-click="Tosearch(keywords)">搜索</button>
 										</div>
 									</form>
 								</div>
@@ -94,12 +96,7 @@
 										<span class="car"></span>
 										<a class="sui-btn btn-default btn-xlarge" href="cart.html">
 											<span>我的购物车</span>
-											<i class="shopnum">0</i>
 										</a>
-										<div class="clearfix shopcarlist" id="shopcarlist" style="display:none">
-											<p>"啊哦，你的购物车还没有商品哦！"</p>
-											<p>"啊哦，你的购物车还没有商品哦！"</p>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -107,35 +104,19 @@
 
 						<div class="yui3-g NavList">
 							<div class="yui3-u Left all-sort">
-								<h4>全部商品分类</h4>
+								<h4><a href="index.html" style="color: white;">商城</a></h4>
 							</div>
-							<div class="yui3-u Center navArea">
-								<ul class="nav">
-									<li class="f-item">服装城</li>
-									<li class="f-item">美妆馆</li>
-									<li class="f-item">商城超市</li>
-									<li class="f-item">全球购</li>
-									<li class="f-item">闪购</li>
-									<li class="f-item">团购</li>
-									<li class="f-item">有趣</li>
-									<li class="f-item">
-										<a href="seckill-index.html" target="_blank">秒杀</a>
-									</li>
-								</ul>
-							</div>
-							<div class="yui3-u Right"></div>
+							
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<link rel="stylesheet" type="text/css" href="../../css/webbase.css" />
-		<link rel="stylesheet" type="text/css" href="../../css/pages-seckillOrder.css" />
+
 		<script type="text/javascript" src="../../plugins/jquery/jquery.min.js"></script>
 		<script type="text/javascript" src="../../plugins/angularjs/angular.min.js"></script>
-		<script type="text/javascript" src="../../js/base/Base.js"></script>
-		<script type="text/javascript" src="../../js/base/BaseService_portal.js"></script>
+		<script type="text/javascript" src="../../js/base/Base.js" ></script>
 		<script type="text/javascript" src="../../js/base/BaseController.js"></script>
 		<script type="text/javascript" src="../../js/service/UploadService.js"></script>
 		<script type="text/javascript" src="../../js/service/ContentCategoryService.js"></script>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+		<title>订单详情</title>
+	</head>
+
+	<body>
+		<!-- 头部栏位 -->
+		<div class="head"></div>
+		<!--header-->
+		<div id="account" ng-app="shopping" ng-controller="OrderController" ng-init="loadOrderId()">
+			<div class="py-container">
+				<div class="yui3-g home">
+					<!--右侧主内容-->
+					<div class="yui3-u-5-6">
+						<div class="body">
+							<div class="order-detail">
+								<h4>订单详情</h4>
+								<div class="order-bar">
+									<div class="sui-steps-round steps-round-auto steps-4">
+										<div class="finished">
+											<div class="wrap">
+												<div class="round">1</div>
+												<div class="bar"></div>
+											</div>
+											<label>
+                                            <span>提交订单</span>
+                                        </label>
+										</div>
+										<div class=" {{isGtStatus(2,entity.order.status)?'current':'todo'}}">
+											<div class="wrap">
+												<div class="round">2</div>
+												<div class="bar"></div>
+											</div>
+											<label>
+	                                            <span>付款成功</span>
+                                      	 	</label>
+										</div>
+										<div class="{{isGtStatus(3,entity.order.status)?'current':'todo'}}">
+											<div class="wrap">
+												<div class="round">3</div>
+												<div class="bar"></div>
+											</div>
+											<label>
+                                            <span>等待发货</span>
+                                        </label>
+										</div>
+										<div class="{{isGtStatus(4,entity.order.status)?'current':'todo'}}">
+											<div class="wrap">
+												<div class="round">4</div>
+												<div class="bar"></div>
+											</div>
+											<label>
+                                           		<span>已发货</span>
+                                        	</label>
+										</div>
+										<div class="{{isGtStatus(5,entity.order.status)?'current':'todo'}} last">
+											<div class="wrap">
+												<div class="round">5</div>
+											</div>
+											<label>
+                                           		<span>交易完成</span>
+                                        	</label>
+										</div>
+									</div>
+								</div>
+								<div class="order-state">
+									<p>当前订单状态：
+										<span class="red" ng-if="entity.order.status==1">未付款</span>
+										<span class="red" ng-if="entity.order.status==2">已付款</span>
+										<span class="red" ng-if="entity.order.status==3">未发货</span>
+										<span class="red" ng-if="entity.order.status==4">已发货</span>
+										<span class="red" ng-if="entity.order.status==5">交易成功</span>
+										<span class="red" ng-if="entity.order.status==6">交易关闭</span>
+									</p>
+								</div>
+							</div>
+							<div class="order-info">
+								<h5>订单信息</h5>
+								<p>收货地址：{{entity.order.receiverAreaName}} </p>
+								<p>订单单号：{{entity.orderId}}</p>
+								<p>下单时间：{{entity.order.createTime}}</p>
+								<p>支付方式：{{payType[entity.order.paymentType]}}</p>
+							</div>
+							<div class="order-goods">
+								<table class="sui-table">
+									<thead>
+										<th class="center">商品</th>
+										<th class="center">价格</th>
+										<th class="center">数量</th>
+									</thead>
+
+									<tbody>
+										<tr>
+											<td colspan="5">订单编号：{{entity.orderId}}</td>
+										</tr>
+										<tr ng-repeat="itemlist in entity.orderItemlist">
+											<td width="35%">
+												<div class="typographic">
+													<img src="{{itemlist.picPath}}" width="100px" height="100px" />
+													<a href="item.html#?id={{itemlist.goodsId}}" class="block-text">{{itemlist.title}}</a>
+												</div>
+											</td>
+											<td width="5%" class="center">
+												<ul class="unstyled">
+													<li>¥{{itemlist.price}}</li>
+												</ul>
+											</td>
+											<td width="5%" class="center">{{itemlist.num}}</td>
+										</tr>
+									</tbody>
+								</table>
+								<div class="order-price">
+									<p>商品总金额：￥{{entity.order.payment}}</p>
+									<p>运费金额：0.00</p>
+									<h4 class="red">实际支付：￥{{entity.order.payment}}</h4>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 底部栏位 -->
+		<!-- 底部栏位 -->
+		<footer class="footer"></footer>
+	</body>
+
+	<script type="text/javascript" src="../../plugins/jQuery/jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/common/input.js"></script>
+	<script src="../../plugins/angularjs/angular.min.js"></script>
+	<script type="text/javascript" src="../../js/base/Base.js"></script>
+	<script type="text/javascript" src="../../js/base/BaseController.js"></script>
+	<script type="text/javascript" src="../../js/controller/OrderController.js"></script>
+	<script type="text/javascript" src="../../js/service/OrderService.js"></script>
+
+</html>

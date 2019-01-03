@@ -8,6 +8,10 @@
 		<title>后台管理系统</title>
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+		<link rel="stylesheet" href="../../../plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../../plugins/adminLTE/css/AdminLTE.css">
+		<link rel="stylesheet" href="../../../plugins/adminLTE/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../../../css/style.css">
 	</head>
 
 	<body class="hold-transition skin-blue sidebar-mini" ng-app="shopping" ng-controller="SellerLoginController" ng-init="getCookie('seller_name')">
@@ -19,9 +23,9 @@
 				<!-- Logo -->
 				<a href="index.html" class="logo">
 					<!-- mini logo for sidebar mini 50x50 pixels -->
-					<span class="logo-mini"><b>商城</b></span>
+					<span class="logo-mini"><b>购物商城</b></span>
 					<!-- logo for regular state and mobile devices -->
-					<span class="logo-lg"><b>商城</b>商家后台</span>
+					<span class="logo-lg"><b>购物商城</b>商家后台</span>
 				</a>
 				<!-- Header Navbar: style can be found in header.less -->
 				<nav class="navbar navbar-static-top">
@@ -78,10 +82,7 @@
 					</div>
 					<ul class="sidebar-menu">
 						<li class="header">菜单</li>
-						<li id="admin-index">
-							<a href="index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a>
-						</li>
-
+						
 						<!-- 菜单 -->
 						<li class="treeview">
 							<a href="#">
@@ -127,6 +128,22 @@
 								</li>
 							</ul>
 						</li>
+						<li class="treeview">
+							<a href="#" >
+								<i class="fa fa-folder"></i>
+								<span>订单管理</span>
+								<span class="pull-right-container">
+				       			<i class="fa fa-angle-left pull-right"></i>
+				       		</a>
+				       		<ul class="treeview-menu">
+								<li id="admin-login">
+									<a href="home-index.html" target="iframe">
+										<i class="fa fa-circle-o"></i> 订单管理
+									</a>
+								</li>
+							</ul>
+				   		 </span>
+						</li>
 
 						<!-- 菜单 /-->
 
@@ -138,7 +155,7 @@
 
 			<!-- 内容区域 -->
 			<div class="content-wrapper">
-				<iframe width="100%" id="iframe" name="iframe" onload="SetIFrameHeight()" frameborder="0" src="home.html"></iframe>
+				<iframe width="100%" id="iframe" name="iframe" onload="SetIFrameHeight()" frameborder="0" src="seller.html"></iframe>
 
 			</div>
 			<!-- 内容区域 /-->
@@ -156,10 +173,6 @@
 	</body>
 
 	<!-- 页面meta /-->
-	<link rel="stylesheet" href="../../../plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../../plugins/adminLTE/css/AdminLTE.css">
-	<link rel="stylesheet" href="../../../plugins/adminLTE/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="../../../css/style.css">
 	<script src="../../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="../../../plugins/bootstrap/js/bootstrap.min.js"></script>

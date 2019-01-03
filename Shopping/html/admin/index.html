@@ -8,6 +8,10 @@
 		<title>运营商后台管理系统</title>
 		<!-- Tell the browser to be responsive to screen width -->
 		<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+		<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
+		<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="../../css/style.css">
 	</head>
 
 	<body class="hold-transition skin-green sidebar-mini" ng-app="shopping" ng-controller="AdminUserController" ng-init="getCookie('admin')">
@@ -77,9 +81,7 @@
 					<!-- sidebar menu: : style can be found in sidebar.less -->
 					<ul class="sidebar-menu">
 						<li class="header">菜单</li>
-						<li id="admin-index">
-							<a href="index.html"><i class="fa fa-dashboard"></i> <span>首页</span></a>
-						</li>
+						
 
 						<!-- 菜单 -->
 						<li class="treeview">
@@ -169,7 +171,7 @@
 
 			<!-- 内容区域 -->
 			<div class="content-wrapper">
-				<iframe width="100%" id="iframe" name="iframe" onload="SetIFrameHeight()" frameborder="0" src="home.html"></iframe>
+				<iframe width="100%" id="iframe" name="iframe" onload="SetIFrameHeight()" frameborder="0" src="seller.html"></iframe>
 			</div>
 			<!-- 内容区域 /-->
 
@@ -217,10 +219,6 @@
 
 	</body>
 
-	<link rel="stylesheet" href="../../plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="../../plugins/adminLTE/css/AdminLTE.css">
-	<link rel="stylesheet" href="../../plugins/adminLTE/css/skins/_all-skins.min.css">
-	<link rel="stylesheet" href="../../css/style.css">
 	<script src="../../plugins/jQuery/jquery-2.2.3.min.js"></script>
 	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<script src="../../plugins/bootstrap/js/bootstrap.min.js"></script>

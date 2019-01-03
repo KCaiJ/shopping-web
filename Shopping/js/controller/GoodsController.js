@@ -1,7 +1,7 @@
 app.controller('GoodsController', function($scope, $controller, $location, GoodsService, UploadService, ItemCatService, TypeTemplateService, SpecificationService, BrandService) {
 	$controller("BaseController", { $scope: $scope });
 	$scope.entity = { goodsDesc: { itemImages: [], specificationItems: [] } }; //页面实体结构
-	$scope.status = ['未审核', '申请审核中','审核通过', '审核未通过', '关闭']; //商品状态
+	$scope.status = ['未审核', '申请审核中', '审核通过', '审核未通过', '关闭']; //商品状态
 	$scope.itemCatList = []; //商品分类列表
 	$scope.BrandList = []; //品牌列表
 	$scope.TypeList = []; //模板列表
@@ -72,17 +72,16 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 			}
 		);
 	}
-	
-	
+
 	//获取实体属性
 	$scope.findOneByID = function(id) {
 		GoodsService.findOne(id).success(
 			function(res) {
 				$scope.forward_login_seller(res);
 				$scope.details = res;
-				$scope.details.goodsDesc.customAttributeItems = JSON.parse($scope.details.goodsDesc.customAttributeItems);//扩展属性
-				$scope.details.goodsDesc.itemImages = JSON.parse($scope.details.goodsDesc.itemImages);//图片列表
-				$scope.details.goodsDesc.specificationItems = JSON.parse($scope.details.goodsDesc.specificationItems);//规格信息
+				$scope.details.goodsDesc.customAttributeItems = JSON.parse($scope.details.goodsDesc.customAttributeItems); //扩展属性
+				$scope.details.goodsDesc.itemImages = JSON.parse($scope.details.goodsDesc.itemImages); //图片列表
+				$scope.details.goodsDesc.specificationItems = JSON.parse($scope.details.goodsDesc.specificationItems); //规格信息
 			}
 		);
 	}
@@ -131,7 +130,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 					alert('保存成功');
 					$scope.entity = {};
 					editor.html(''); //清空富文本编辑器
-					window.location.href='goods.html';
+					window.location.href = 'goods.html';
 				} else {
 					alert(res.message);
 				}
@@ -319,7 +318,7 @@ app.controller('GoodsController', function($scope, $controller, $location, Goods
 			}
 		);
 	}
-	
+
 	//修改上下架状态
 	$scope.isMarketable = function(id, status) {
 		GoodsService.isMarketable(id, status).success(

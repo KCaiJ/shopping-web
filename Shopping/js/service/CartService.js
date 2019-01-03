@@ -3,11 +3,11 @@ app.service('CartService',function($http){
 	domain = "http://127.0.0.1:9107";
 	//购物车列表
 	this.findCartList=function(){
-		return $http.get(domain+'/Cart/findCartList.do', { withCredentials: true });		
+		return $http.get("http://127.0.0.1:9107"+'/Cart/findCartList.do', { withCredentials: true });		
 	}
 	//添加商品到购物车
 	this.addGoodsToCartList=function(itemId,num){
-		return $http.get(domain+'/Cart/addGoodsToCartList.do?itemId='+itemId+'&num='+num, { withCredentials: true });
+		return $http.get("http://127.0.0.1:9107"+'/Cart/addGoodsToCartList.do?itemId='+itemId+'&num='+num, { withCredentials: true });
 	}
 
 	//求合计

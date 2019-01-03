@@ -57,7 +57,6 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 		);
 	}
 
-
 	//查询+ 分页
 	$scope.search = function() {
 		page = $scope.paginationConf.currentPage;
@@ -70,7 +69,7 @@ app.controller('SellerController', function($scope, $controller, SellerService) 
 			}
 		);
 	}
-	
+
 	//状态更改
 	$scope.updateStatus = function(sellerId, status) {
 		SellerService.updateStatus(sellerId, status).success(

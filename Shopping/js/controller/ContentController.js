@@ -1,4 +1,4 @@
-app.controller('ContentController', function($scope, $controller,$http, ContentService, UploadService, ContentCategoryService) {
+app.controller('ContentController', function($scope, $controller, $http,$timeout, ContentService, UploadService, ContentCategoryService) {
 	$controller("BaseController", { $scope: $scope });
 	$scope.status = ["无效", "有效"];
 	$scope.itemCatList = []
@@ -89,35 +89,73 @@ app.controller('ContentController', function($scope, $controller,$http, ContentS
 			alert("上传发生错误");
 		});
 	};
-	
-	
-	
+
 	//前端界面请求
-	
-	$scope.contentList=[];//广告集合	
-	$scope.findByCategoryId=function(categoryId){
+
+	$scope.contentList = []; //广告集合	
+	$scope.findByCategoryId = function(categoryId) {
 		ContentService.findByCategoryId(categoryId).success(
-			function(response){
-				$scope.contentList[categoryId]=response;
+			function(response) {
+				$scope.contentList[categoryId] = response;
 				console.log($scope.contentList[categoryId])
 			}
-		);		
+		);
 	};
-	
+
 	//搜索跳转
-	$scope.Tosearch=function(){
-		location.href="search.html#?keywords="+$scope.keywords;
+	$scope.Tosearch = function(keywords) {
+		location.href = "search.html#?keywords=" +keywords;
 	}
 	
-	
+	$scope.Tosort = function(pid,cid) {
+		location.href = "sort.html#?pid=" +pid+"&cid="+cid;
+	}
+
 	//注销
 	$scope.exit = function() {
 		var user = $scope.getCookie("user");
-		$http.get('http://127.0.0.1:9106/User/exit.do?username=' + user , { withCredentials: true }).success(function(res) {
+		$http.get('http://127.0.0.1:9106/User/exit.do?username=' + user, { withCredentials: true }).success(function(res) {
 			location.href = 'login.html'
 		});
 	}
-
-
 	
+	$scope.selectItemCat1List = function() {
+		ContentService.findByParentId(0).success(
+			function(res) {
+				$scope.itemCat1List = res;
+				for (var i = 0; i <res.length; i++) {
+					$scope.getItemCat2List(res[i].id,i)
+				}
+				$scope.myStyle=[]
+				for (var i = 0; i < $scope.itemCat1List.length; i++) {
+					$scope.myStyle[i] = { "display" : status,}
+				}
+				console.log($scope.myStyle)
+			}
+		);
+	}
+	
+	$scope.getItemCat2List = function(id,j) {
+		ContentService.findByParentId(id).success(
+			function(res) {
+				$scope.itemCat1List[j].itemCat2List = res;
+				for (var i = 0; i < res.length; i++) {
+					$scope.getItemCat3List(res[i].id,j,i)
+				}
+			}
+		);
+	}
+	
+	$scope.getItemCat3List = function(id,j,k) {
+		ContentService.findByParentId(id).success(
+			function(res) {
+				$scope.itemCat1List[j].itemCat2List[k].itemCat3List= res;
+			}
+		);
+	}
+	$scope.chageStyle=function(i,status){
+		console.log(i+"  "+status)
+		$scope.myStyle[i] = { "display" : status,}	
+	}
+
 });
